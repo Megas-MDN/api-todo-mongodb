@@ -1,6 +1,6 @@
-import { Route } from 'express';
-import { goLogin } from '../controllers/goLoginController';
+import { Router } from 'express';
+import { goLogin } from '../controllers/goLoginController.js';
 
-export const route = Route();
+export const route = Router();
 
 route.post('/login', goLogin);

@@ -1,5 +1,5 @@
-import { createToken } from '../jwt/createToken';
-import { User } from '../models/UserModel';
+import { createToken } from '../jwt/createToken.js';
+import { User } from '../models/UserModel.js';
 import bcrypt from 'bcrypt';
 
 export const goLogin = async (req, res) => {
