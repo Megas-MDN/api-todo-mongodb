@@ -3,11 +3,8 @@ import bcrypt from 'bcrypt';
 
 export const deleteUser = async (req, res) => {
   try {
-    const { password, id } = req.body;
-    const user = await User.findById(id);
-    if (!user) {
-      return res.status(400).send({ message: 'User not found', user: null });
-    }
+    const { password, id, user } = req.body;
+
     const auth = await bcrypt.compare(password, user.password);
     if (!auth) {
       return res

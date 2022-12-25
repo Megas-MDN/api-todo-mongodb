@@ -24,6 +24,7 @@ export const validToken = async (req, res, next) => {
             .send({ message: 'User not exist', user: null });
         }
         req.body.id = decoded.id;
+        req.body.user = user;
         next();
       }
     });
