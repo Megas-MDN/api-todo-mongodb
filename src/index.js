@@ -5,6 +5,7 @@ import { connectDB } from './database/dbConnect.js';
 import { route as loginRoute } from './routes/loginRoute.js';
 import { route as deleteRoute } from './routes/deleteRoute.js';
 import { route as getUserRoute } from './routes/getUserRouter.js';
+import { route as updateTasksRoute } from './routes/updateTasksRoute.js';
 config();
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(
   })
 );
 app.use(getUserRoute);
+app.use(updateTasksRoute);
 app.use(deleteRoute);
 app.use(loginRoute);
 app.listen(port, () => console.log('Server ON :: ', port));
