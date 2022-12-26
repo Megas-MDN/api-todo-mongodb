@@ -19,16 +19,15 @@ export const goLogin = async (req, res) => {
       const deletedUser = await limitUsers();
       const newUser = await User.create({ email, password });
       const token = createToken(newUser._id, 10000);
-      return res
-        .status(201)
-        .send({
-          message: 'User created',
-          user: newUser,
-          token,
-          userDeleted: deletedUser || null,
-        });
+      return res.status(201).send({
+        message: 'User created',
+        user: newUser,
+        token,
+        userDeleted: deletedUser || null,
+      });
     }
-    const auth = bcrypt.compare(password, user.password);
+    const auth = await bcrypt.compare(password, user.password);
+
     if (!auth) {
       return res
         .status(400)
