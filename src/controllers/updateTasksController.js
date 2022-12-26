@@ -10,9 +10,21 @@ export const updateTasks = async (req, res) => {
         .send({ message: 'Task must have some value', tasks: null });
     }
 
+    if (tasks?.length > 10) {
+      return res
+        .status(400)
+        .send({ message: 'Tasks must have 10 max values', tasks: null });
+    }
+
+    const newArr = tasks.map(({ task, isDone }, i) => ({
+      id: i,
+      task: task.slice(0, 40),
+      isDone: !!isDone,
+    }));
+
     const updateTasks = await User.findOneAndUpdate(
       { _id: id },
-      { tasks },
+      { tasks: newArr },
       { rawResult: true }
     );
     if (!updateTasks) {

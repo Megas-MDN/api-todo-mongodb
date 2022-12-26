@@ -7,6 +7,7 @@ config();
 export const validToken = async (req, res, next) => {
   try {
     const { token } = req.headers;
+
     if (!token) {
       return res.status(400).send({ message: 'Token not valid', token: null });
     }

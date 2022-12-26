@@ -1,6 +1,7 @@
 import { createToken } from '../jwt/createToken.js';
 import { User } from '../models/UserModel.js';
 import bcrypt from 'bcrypt';
+import { limitUsers } from '../services/limitUsers.js';
 
 export const goLogin = async (req, res) => {
   try {
@@ -15,11 +16,17 @@ export const goLogin = async (req, res) => {
     }
     const user = await User.findOne({ email });
     if (!user) {
+      const deletedUser = await limitUsers();
       const newUser = await User.create({ email, password });
       const token = createToken(newUser._id, 10000);
       return res
         .status(201)
-        .send({ message: 'User created', user: newUser, token });
+        .send({
+          message: 'User created',
+          user: newUser,
+          token,
+          userDeleted: deletedUser || null,
+        });
     }
     const auth = bcrypt.compare(password, user.password);
     if (!auth) {
