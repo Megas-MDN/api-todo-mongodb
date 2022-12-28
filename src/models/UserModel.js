@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Password is required'],
   },
   tasks: {
-    type: [],
+    type: Array,
+    default: [],
     required: [true, 'array de tasks is required'],
   },
 });
