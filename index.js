@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
-import { connectDB } from './database/dbConnect.js';
-import { route as loginRoute } from './routes/loginRoute.js';
-import { route as deleteRoute } from './routes/deleteRoute.js';
-import { route as getUserRoute } from './routes/getUserRouter.js';
-import { route as updateTasksRoute } from './routes/updateTasksRoute.js';
+import { connectDB } from './src/database/dbConnect.js';
+import { route as loginRoute } from './src/routes/loginRoute.js';
+import { route as deleteRoute } from './src/routes/deleteRoute.js';
+import { route as getUserRoute } from './src/routes/getUserRouter.js';
+import { route as updateTasksRoute } from './src/routes/updateTasksRoute.js';
 config();
 
 const app = express();

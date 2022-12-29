@@ -4,10 +4,10 @@ export const updateTasks = async (req, res) => {
   try {
     const { id, tasks } = req.body;
 
-    if (!tasks || !Array.isArray(tasks) || tasks?.length === 0) {
+    if (!tasks || !Array.isArray(tasks)) {
       return res
         .status(400)
-        .send({ message: 'Task must have some value', tasks: null });
+        .send({ message: 'Task must have some value', tasks: [] });
     }
 
     if (tasks?.length > 10) {
